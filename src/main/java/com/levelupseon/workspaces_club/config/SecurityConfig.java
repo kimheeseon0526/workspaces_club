@@ -37,12 +37,15 @@ public class SecurityConfig {
   @Bean
   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
     //spring security 6이상 버전에서 아래와 같이 변경
-    http.authorizeHttpRequests((auth) -> {
-      auth.requestMatchers("/sample/all").permitAll()
+    http
+            .csrf(csrf -> csrf.disable())
+            .authorizeHttpRequests((auth) -> {
+        auth.requestMatchers("/sample/all").permitAll()
               .requestMatchers("/sample/member").hasRole("USER");
-      //permitAll() : 로그인 안해도 접근 가능
-      });
-    http.formLogin(Customizer.withDefaults());
+        //permitAll() : 로그인 안해도 접근 가능
+         })
+            .formLogin(Customizer.withDefaults())
+            .logout(Customizer.withDefaults());
     return http.build();
   }
 }
