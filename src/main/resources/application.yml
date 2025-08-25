@@ -19,6 +19,8 @@ logging:
   level:
     org.springframework.security.web: trace
     com.levelupseon: debug
+  profiles:
+    include = oauth
 
 
 

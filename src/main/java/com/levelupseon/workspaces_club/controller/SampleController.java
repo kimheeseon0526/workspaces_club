@@ -19,6 +19,8 @@ public class SampleController {
   public void exMember() {
     log.info("member");
   }
+
+
   @GetMapping("/admin")
   public void exAdmin() {
     log.info("admin");
